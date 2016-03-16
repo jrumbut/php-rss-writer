@@ -90,21 +90,11 @@ class Item implements ItemInterface
         return $this;
     }
 
-    public function appendChildWithCdata(SimpleXMLElement $xml, $element, $value)
-    {
-        $child = $xml->addChild($element);
-        if ($child !== null) {
-            $node = dom_import_simplexml($child);
-            $no = $node->ownerDocument;
-            $node->appendChild($no->createCDATASection($value));
-        }
-    }
-
     public function asXML()
     {
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8" ?><item></item>', LIBXML_NOERROR | LIBXML_ERR_NONE | LIBXML_ERR_FATAL);
-        $this->appendChildWithCdata($xml, 'title', $this->title);
-        $this->appendChildWithCdata($xml, 'description', $this->description);
+        $xml->appendChildWithCdata('title', $this->title);
+        $xml->appendChildWithCdata('description', $this->description);
         $xml->addChild('link', $this->url);
 
         foreach ($this->categories as $category) {
