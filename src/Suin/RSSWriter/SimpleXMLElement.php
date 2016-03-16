@@ -17,7 +17,7 @@ class SimpleXMLElement extends \SimpleXMLElement
         return parent::addChild($name, $value, $namespace);
     }
 
-    public function appendChildWithCdata($name, $value = null, $namespace = null)
+    public function addChildWithCdata($name, $value = null, $namespace = null)
     {
         $child = $this->addChild($name, null, $namespace);
         if ($child !== null) {

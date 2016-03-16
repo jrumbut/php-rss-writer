@@ -93,8 +93,8 @@ class Item implements ItemInterface
     public function asXML()
     {
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8" ?><item></item>', LIBXML_NOERROR | LIBXML_ERR_NONE | LIBXML_ERR_FATAL);
-        $xml->appendChildWithCdata('title', $this->title);
-        $xml->appendChildWithCdata('description', $this->description);
+        $xml->addChildWithCdata('title', $this->title);
+        $xml->addChildWithCdata('description', $this->description);
         $xml->addChild('link', $this->url);
 
         foreach ($this->categories as $category) {
